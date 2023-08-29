@@ -1,12 +1,11 @@
 // Adding a todo item on form submission
 const toDoForm = document.querySelector('#todo-form');
 const list = document.querySelector('#list');
-const input = document.querySelector('#new-todo')
-const enterBtn = document.querySelector('#enter')
+const input = document.querySelector('#new-todo');
+const enterBtn = document.querySelector('#enter');
+const deleteButton = document.getElementsByClassName('deleteItem');
 
-// input.addEventListener("input", (event) => {
-//     list.lastChild = event.target["new-todo"].value;//our solution: event.target.value;
-// });
+
 
 const handleSubmit = (event) => {
     event.preventDefault();
@@ -16,11 +15,31 @@ const handleSubmit = (event) => {
     newListItem.innerText = newToDo;
     list.appendChild(newListItem);
     event.target.reset();
+    const deleteButton = document.createElement("BUTTON");
+    const txt = document.createTextNode("Delete!");
+    deleteButton.appendChild(txt);
+    deleteButton.className = "deleteItem";
+    newListItem.append(deleteButton);
+
+    
 }
+
+// Click on delete button to hide the current list item
+for(i = 0; i< deleteButton.length; i++){
+    deleteButton[i].onclick = function(){
+        var div = list.parentElement;
+        div.style.display = "none";
+
+    }
+}
+
 
 
 console.log(toDoForm);
 
 toDoForm.addEventListener('submit', handleSubmit);
-//enterBtn.addEventListener('click', handleSubmit);
+deleteButton.addEventListener('click', deleteButton);
+
+
+
 
